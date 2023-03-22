@@ -1,36 +1,46 @@
-import numpy
-
-from algorithms.insertion_sort import insertion_sort
-from algorithms.selection_sort import selection_sort
-from algorithms.bubble_sort import bubble_sort
-from matplotlib import pyplot
+# Importing the copy method to make deep copies of the test arrays
 from copy import copy
 
+import numpy
+from matplotlib import pyplot
 
+from algorithms.bubble_sort import bubble_sort
+# Importing the sorting algorithms and plotting library
+from algorithms.insertion_sort import insertion_sort
+from algorithms.selection_sort import selection_sort
+
+
+# A function to get the mean time for each sorting algorithm for a given array size
 def get_mean_time_for_algorithms(size_of_array: int, list_of_algorithms: list) -> dict:
     dict_times = {}
-    numer_of_runs = 1
+    numer_of_runs = 100  # Number of times each algorithm will run for a given array size
 
+    # Looping through each algorithm and the number of runs
     for i in range(numer_of_runs):
+        # Creating a random test array for each iteration
         test_array = numpy.random.randint(-5000, 5000, size_of_array)
 
+        # Looping through each algorithm and calculating the total time taken by each
         for algo in list_of_algorithms:
             algo(copy(test_array), total_time_per_function=dict_times)
 
+    # Looping through the results and calculating the mean time for each algorithm
     for key in dict_times.keys():
-        mean = sum(dict_times[key])/numer_of_runs
+        mean = sum(dict_times[key]) / numer_of_runs
         print(f"mean time for {key} is: {mean}s")
         dict_times[key] = mean
 
     return dict_times
 
 
+# A function to create a line chart for the mean times of each sorting algorithm
 def create_chart(size_of_arrays, data):
     pyplot.title("Mean times per algorithm")
     pyplot.xlabel('size of arrays')
     pyplot.ylabel('Time of work [s]')
     pyplot.xlim(min(size_of_arrays), max(size_of_arrays))
 
+    # Looping through each algorithm and plotting its mean time for each array size
     for name in data:
         pyplot.plot(size_of_arrays, data[name], label=name)
 
@@ -38,6 +48,7 @@ def create_chart(size_of_arrays, data):
     pyplot.show()
 
 
+# Main function
 if __name__ == '__main__':
     # Parameters
     size_of_arrays = [100, 500, 1_000, 3_000, 5_000]
@@ -56,4 +67,3 @@ if __name__ == '__main__':
             results[algo_name].append(mean_times_for_current_iteration[algo_name])
 
     create_chart(size_of_arrays, results)
-
