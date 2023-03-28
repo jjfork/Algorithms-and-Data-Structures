@@ -29,7 +29,7 @@ def timeit(func):
         # If a dictionary of total times per function is provided, update it with the total time taken by this function.
         if total_time_per_function is None:
             # Print the total time taken by the function.
-            print(f'Function {func.__name__} Took {total_time:.6f} seconds')
+            # print(f'Function {func.__name__} Took {total_time:.6f} seconds')
             return result
 
         if func.__name__ in total_time_per_function:
