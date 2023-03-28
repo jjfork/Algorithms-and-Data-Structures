@@ -4,29 +4,30 @@ from copy import copy
 import numpy
 from matplotlib import pyplot
 
+from advanced_algorithms.counting_sort import counting_sort
+from advanced_algorithms.merge_sort import merge_sort
 from algorithms.bubble_sort import bubble_sort
 # Importing the sorting algorithms and plotting library
-from algorithms.insertion_sort import insertion_sort
-from algorithms.selection_sort import selection_sort
+from advanced_algorithms.quick_sort import quick_sort
 
 
 # A function to get the mean time for each sorting algorithm for a given array size
 def get_mean_time_for_algorithms(size_of_array: int, list_of_algorithms: list) -> dict:
     dict_times = {}
-    numer_of_runs = 100  # Number of times each algorithm will run for a given array size
+    number_of_runs = 1  # Number of times each algorithm will run for a given array size
 
     # Looping through each algorithm and the number of runs
-    for i in range(numer_of_runs):
+    for i in range(number_of_runs):
         # Creating a random test array for each iteration
-        test_array = numpy.random.randint(-5000, 5000, size_of_array)
+        random_array = numpy.random.randint(0, 5000, size_of_array)
 
         # Looping through each algorithm and calculating the total time taken by each
         for algo in list_of_algorithms:
-            algo(copy(test_array), total_time_per_function=dict_times)
+            algo(copy(random_array), total_time_per_function=dict_times)
 
     # Looping through the results and calculating the mean time for each algorithm
     for key in dict_times.keys():
-        mean = sum(dict_times[key]) / numer_of_runs
+        mean = sum(dict_times[key]) / number_of_runs
         print(f"mean time for {key} is: {mean}s")
         dict_times[key] = mean
 
@@ -52,7 +53,7 @@ def create_chart(size_of_arrays, data):
 if __name__ == '__main__':
     # Parameters
     size_of_arrays = [100, 500, 1_000, 3_000, 5_000]
-    list_of_algo = [selection_sort, insertion_sort, bubble_sort]
+    list_of_algo = [counting_sort, merge_sort, quick_sort]
 
     # Logic
     results = dict()
