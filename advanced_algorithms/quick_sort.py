@@ -21,7 +21,6 @@ def quick_sort(input_array: Union[int, ndarray[int]]):
             left.append(input_array[number])
         else:
             # If the current element is greater than or equal to the pivot, add it to the right partition.
-
             right.append(input_array[number])
     # Recursively sort the left and right partitions using the same quicksort algorithm.
     sorted_left = quick_sort(left)
