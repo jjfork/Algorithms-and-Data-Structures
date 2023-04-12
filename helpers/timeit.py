@@ -20,23 +20,25 @@ def timeit(func):
         # Call the decorated function with its arguments and keyword arguments.
         result = func(*args, **kwargs)
 
-        # Get the end time of the decorated function's execution.
-        end_time = time.perf_counter()
+        if not skip:
+            # Get the end time of the decorated function's execution.
+            end_time = time.perf_counter()
 
-        # Calculate the total time taken by the decorated function's execution.
-        total_time = end_time - start_time
+            # Calculate the total time taken by the decorated function's execution.
+            total_time = end_time - start_time
 
-        # If a dictionary of total times per function is provided, update it with the total time taken by this function.
-        if total_time_per_function is None:
-            # Print the total time taken by the function.
-            # print(f'Function {func.__name__} Took {total_time:.6f} seconds')
-            return result
+            # If a dictionary of total times per function is provided, update it with the total time taken by this
+            # function.
+            if total_time_per_function is None:
+                # Print the total time taken by the function.
+                print(f'Function {func.__name__} Took {total_time:.6f} seconds')
+                return result
 
-        if func.__name__ in total_time_per_function:
-            total_time_per_function.get(func.__name__).append(total_time)
-        else:
-            total_time_per_function[func.__name__] = []
-            total_time_per_function.get(func.__name__).append(total_time)
+            if func.__name__ in total_time_per_function:
+                total_time_per_function.get(func.__name__).append(total_time)
+            else:
+                total_time_per_function[func.__name__] = []
+                total_time_per_function.get(func.__name__).append(total_time)
 
         return result
 

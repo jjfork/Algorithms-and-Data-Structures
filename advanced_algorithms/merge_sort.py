@@ -13,8 +13,8 @@ def merge_sort(input_array: Union[int, ndarray[int]]):
         right = input_array[mid:]
 
         # Recursive call
-        merge_sort(left)
-        merge_sort(right)
+        merge_sort(left, skip=True)
+        merge_sort(right, skip=True)
 
         # Merge halves
         i = j = k = 0

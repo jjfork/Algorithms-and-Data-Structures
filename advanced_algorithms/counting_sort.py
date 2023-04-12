@@ -7,6 +7,23 @@ from helpers.timeit import timeit
 
 @timeit
 def counting_sort(input_array: Union[int, ndarray[int]]):
+    #
+    # if len(input_array) <= 1:
+    #     return input_array
+    #
+    # count = [0] * (max(input_array) + 1)
+    # output = []
+    #
+    # for number in input_array:
+    #     count[number] += 1
+    #
+    # for index, number in enumerate(count):
+    #     if number != 0:
+    #         for i in range(number):
+    #             output.append(index)
+    #
+    # return output
+
     # Find maximal element from array
     max_element = max(input_array)
 
@@ -17,16 +34,11 @@ def counting_sort(input_array: Union[int, ndarray[int]]):
     for element in input_array:
         counting_array[element] += 1
 
-    # Calculate the cumulative sum of the counts
-    for i in range(1, len(input_array)):
-        counting_array[i] += counting_array[i - 1]
-
     # Create a sorted array and populate it using a counting array
     sorted_array = [0] * len(input_array)
-    for element in input_array:
-        sorted_array[counting_array[element - 1]] = element
-        counting_array[element] -= 1
+    for element, number in enumerate(sorted_array):
+        if number != 0:
+            for i in range(number):
+                sorted_array.append(element)
 
-    input_array = sorted_array
-
-    return input_array
+    return sorted_array
