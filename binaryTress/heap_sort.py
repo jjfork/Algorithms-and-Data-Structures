@@ -99,9 +99,9 @@ def heap_sort(arr):
 
 
 def measure_time(func, arr):
-    start_time = time.time()
+    start_time = time.perf_counter_ns()
     func(arr)
-    end_time = time.time()
+    end_time = time.perf_counter_ns()
     return end_time - start_time
 
 
@@ -115,7 +115,7 @@ def main():
             times[i].append(time_elapsed)
     plt.plot(vector_lengths, [sum(time_list) / len(time_list) for time_list in times])
     plt.xlabel("Vector length")
-    plt.ylabel("Time elapsed (s)")
+    plt.ylabel("Time elapsed (ns)")
     plt.legend(["Heap sort"])
     plt.show()
 

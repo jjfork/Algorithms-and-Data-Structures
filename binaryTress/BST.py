@@ -58,10 +58,10 @@ def create_random_vector(length):
 
 
 def measure_search_time(bst, vec):
-    start_time = time.time()
+    start_time = time.perf_counter_ns()
     for val in vec:
         bst.search(val)
-    end_time = time.time()
+    end_time = time.perf_counter_ns()
     return end_time - start_time
 
 
@@ -80,6 +80,6 @@ for i, length in enumerate(vector_lengths):
 
 plt.plot(vector_lengths, [sum(times) / num_trials for times in avg_times])
 plt.xlabel('Length of Vector')
-plt.ylabel('Average Search Time (s)')
+plt.ylabel('Average Search Time (ns)')
 plt.title('Average Search Time in Binary Search Tree')
 plt.show()
