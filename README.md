@@ -97,12 +97,14 @@ in this statement on the charts will be shown
    Analyzing the graph, it can be seen that the time complexity of heapsort sorting is of the order of O(n log n).
    The curves in the graph are very close to logarithmic functions, which confirms the theoretical complexity of
    sorting.
-   ![Chart](https://user-images.githubusercontent.com/91293626/233057453-fa98bbff-ce66-4fa0-a140-f0228e644ab1.png)
+   ![Chart]![Zrzut ekranu 2023-04-20 145012](https://user-images.githubusercontent.com/91293626/233371445-91be5a79-0269-493a-9144-1cdba9b25e6a.png)
+
 2) BST:
    We see that the curve in the graph grows nonlinearly with the length of the vector, suggesting a binary search tree
    search time complexity of O(log n). This is the expected result, since BST is well known for its use in fast search
    algorithms, in which the search time is proportional to the height of the tree.
-    ![Chart](https://user-images.githubusercontent.com/91293626/233059430-9da9b71d-5b0d-4a7c-abe6-7c0f24f873e8.png)
+    ![Chart]![Zrzut ekranu 2023-04-20 144957](https://user-images.githubusercontent.com/91293626/233371480-f63f9dc5-7be0-494b-9b9e-72561fee795b.png)
+
 It can also be noted that for shorter vectors (lengths of 100 and 500) the curve is more "rough" and more like a
 logarithmic function, while for longer vectors (lengths of 1000 and 2000) the curve is smoother and more like a
 quadratic function. This is because for shorter vectors the span of values in the tree is smaller and the tree is less
